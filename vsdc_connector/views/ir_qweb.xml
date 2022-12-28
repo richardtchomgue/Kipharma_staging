@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <template id="contact_phone_mobile" inherit_id="base.contact" name="Phone and Mobile Display">
+            <xpath expr="//div[@itemprop='address']/div[6]" position="replace">
+                <div t-if="email and 'email' in fields"><i t-if="not options.get('no_marker')" class='fa fa-envelope fa-fw' role="img" aria-label="Email" title="Email"/>Email: <span itemprop="email" t-esc="email"/></div>
+            </xpath>
+            <xpath expr="//div[@itemprop='address']/div[3]" position="replace">
+                <div t-if="phone and 'phone' in fields">
+                    <i t-if="not options.get('no_marker') or options.get('phone_icons')" class='fa fa-phone fa-fw'
+                       role="img" aria-label="Phone" title="Phone"/>
+                    Phone:
+                    <span class="o_force_ltr" itemprop="telephone" t-esc="phone"/>
+                    /
+                    <span t-if="mobile and 'mobile' in fields" class="o_force_ltr" itemprop="telephone" t-esc="mobile"/>
+                </div>
+            </xpath>
+            <xpath expr="//div[@itemprop='address']/div[4]" position="replace"/>
+            <xpath expr="//span[@t-esc='vat_label']" position="replace">
+                <span t-if="'is_client' in fields">
+                    Client TIN:
+                </span>
+                <span t-else="">
+                    TIN:
+                </span>
+            </xpath>
+        </template>
+    </data>
+</odoo>

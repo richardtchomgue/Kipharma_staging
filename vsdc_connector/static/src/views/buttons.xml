@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="vsdc_connector.PurchaseButtons.Buttons" t-inherit="web.ListView.Buttons" owl="1">
+        <xpath expr="(//div/*)[last()]" position="after">
+            <!--<button t-if="props.resModel == 'product.template'"
+                    class="btn btn-primary o_list_tender_button_update_taxes me-2" t-on-click="actionUpdateTaxes"
+                    type="button">Update Taxes</button>-->
+            <button t-if="props.resModel == 'account.move.recv'"
+                    class="btn btn-primary o_list_tender_button_fetch_purchases ml-2" t-on-click="actionFetchPurchases"
+                    type="button">Fetch</button>
+            <button t-if="props.resModel == 'recv.import.item'"
+                    class="btn btn-primary o_list_tender_button_fetch_import_items ml-2"
+                    t-on-click="actionFetchPurchaseItems" type="button">Fetch</button>
+            <button t-if="props.resModel == 'vsdc.product.import'"
+                    class="btn btn-primary o_list_tender_button_fetch_import_vsdc_products ml-2"
+                    t-on-click="actionFetchImportVSDCProducts"
+                    type="button">Fetch</button>
+        </xpath>
+    </t>
+ </templates>
