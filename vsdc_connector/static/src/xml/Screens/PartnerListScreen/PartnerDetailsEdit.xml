@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PartnerDetailsEdit" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//input[@name='name']" position="before">
+            <br/>
+            <br/>
+            <div class="partner-detail">
+                <span class="label" style="min-width:65px">Tax ID</span>
+                <input class="detail vat" name="vat" t-on-change="captureChange"
+                       t-att-value="props.partner.vat || ''" />
+                <button t-on-click="searchPartnerDetailsByVat" style="font-size:13px;margin-left:15px">
+                    <i class="fa fa-search"/> Search
+                </button>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('partner-details-right')]/div[6]" position="replace"/>
+        <xpath expr="//div[hasclass('partner-details-right')]/div[last()]" position="after">
+            <div class="partner-detail">
+                <span class="label">Tax Payer Status</span>
+                <select class="detail tax_payer_status" name="tax_payer_status" t-on-change="captureChange">
+                    <option t-att-selected="props.partner.tax_payer_status ? (('A' === props.partner.tax_payer_status) ? true : undefined) : undefined"
+                            value="A">Active</option>
+                    <option t-att-selected="props.partner.tax_payer_status ? (('D' === props.partner.tax_payer_status) ? true : undefined) : undefined"
+                            value="D">Discard</option>
+                </select>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('partner-details-left')]/div[1]" position="after">
+            <div class="partner-detail">
+                <span class="label">Street2</span>
+                <input class="detail street2" name="street2"
+                       t-on-change="captureChange" t-att-value="props.partner.street2 || ''"
+                       placeholder="Street2" />
+            </div>
+        </xpath>
+    </t>
+
+</templates>

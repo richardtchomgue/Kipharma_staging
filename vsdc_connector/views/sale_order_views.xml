@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="sdc_view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.vsdc</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='order_details']" position="inside">
+                    <field name="company_vat" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">[('vat', '!=', company_vat)]</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="StockPopup" owl="1">
+        <Draggable>
+            <div class="popup popup-text">
+                <header class="title">
+                    STOCK CONTROL WARNING!
+                </header>
+                <main class="body">
+                    <div class="stock-lines">
+                        <p class="warning">There is no enough stock <span t-if="state.location">in <span
+                                class="location"
+                                t-esc="state.location"/></span>
+                            to complete the order.
+                            Please correct the stock quantities for the products below to continue</p>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr style="font-size:14px">
+                                    <th style="padding: 10px;width:33%;border: 1px solid black;" >Product</th>
+                                    <th style="padding: 10px;width:33%;border: 1px solid black;" >Demanded Quantity</th>
+                                    <th style="padding: 10px;width:33%;border: 1px solid black;" >Available Quantity</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr style="font-size:14px" t-foreach="state.lines" t-as="line" t-key="line_index">
+                                    <td style="padding: 10px;border: 1px solid black;"><t t-esc="line[0]"/></td>
+                                    <td style="padding: 10px;border: 1px solid black;"><t t-esc="line[1]"/></td>
+                                    <td style="padding: 10px;border: 1px solid black;"><t t-esc="line[2]"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+                <footer class="footer">
+                    <div class="button" t-on-click="confirm">Ok</div>
+                </footer>
+            </div>
+        </Draggable>
+    </t>
+</templates>
